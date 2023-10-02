@@ -19,8 +19,8 @@ const handleDelete = async (id) => {
 
   
 return (
- <article>
-  <div>
+ 
+  <div className="card">
     <h2>{deck.name}</h2>
     <p>{deck.description}</p>
     <Link to = {`${url}/study`}>
@@ -31,7 +31,7 @@ return (
     </Link>
       <button className="btn btn-danger" onClick={handleDelete}> Delete</button>
   </div>
- </article>
+ 
 )
 }
 

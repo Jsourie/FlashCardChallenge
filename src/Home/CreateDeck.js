@@ -1,9 +1,8 @@
 import React, {useState} from "react";
-import {Link} from "react-router-dom";
+import {Link, Router, Route} from "react-router-dom";
 
 
 function CreateDeck ({newDeck}){
-
 const initialFormState = {
     name: "",
     description: ""
@@ -28,36 +27,40 @@ const handleSubmit = (event) => {
     setFormData({...initialFormState })
 }
 
-return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="name">
-        Name
-        <input
-          id="name"
-          type="text"
-          name="name"
-          onChange={handleInputChange}
-          value={formData.name}
-        />
-      </label>
-      <br />
-      <label htmlFor="description">Description</label>
-              <textarea
-                id="description"
-                name="description"
-                required={true}
-                value={description}
-                onChange={handleInputChange}
-                rows={3}
-                placeholder="Description"
-              />
-              <Link to= '/'>
-              <button> Cancel </button>
-              </Link>
-              <button type="submit">Submit</button>
-    </form>
 
-)
+return (
+    <div>
+        <Route path="/decks/new" component={CreateDeck}>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="name">
+          Name
+          <input
+            id="name"
+            type="text"
+            name="name"
+            onChange={handleInputChange}
+            value={name}
+          />
+        </label>
+        <br />
+        <label htmlFor="description">Description</label>
+        <textarea
+          id="description"
+          name="description"
+          required={true}
+          value={description}
+          onChange={handleInputChange}
+          rows={3}
+          placeholder="Description"
+        />
+        <Link to="/">
+          <button>Cancel</button>
+        </Link>
+        <button type="submit">Submit</button>
+      </form>
+      </Route>
+    </div>
+  );
 }
 
 export default CreateDeck

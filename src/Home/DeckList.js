@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { listDecks } from "../utils/api";
 import DeckCard from "./DeckCard";
 import ErrorMessage from "./ErrorMessage";
-import CreateDeck from "./CreateDeck";
+import {Link} from "react-router-dom";
 
 
 function DeckList () {
@@ -25,8 +25,8 @@ function DeckList () {
     const list = decks.map((deck) => <DeckCard key={deck.id} deck={deck} />);
   
     return (
-      <main>
-       <button><CreateDeck />Create Deck</button> 
+      <main className="card">
+        <Link to ='/decks/new'><button>Create New</button></Link>	
         <section className="row">{list}</section>
       </main>
     );
