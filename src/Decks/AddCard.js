@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams, useHistory } from "react-router-dom";
-import { createCard, readDeck } from "../utils/api"; 
+import { createCard, readDeck, updateDeck } from "../utils/api";
 
 function AddCard() {
-  const { deckId, cardId } = useParams(); 
+  const { deckId } = useParams();
   const history = useHistory();
   const initialFormState = {
     front: "",
-    back: ""
+    back: "",
   };
 
   const [formData, setFormData] = useState(initialFormState);
@@ -16,47 +16,49 @@ function AddCard() {
   const { front, back } = formData;
 
   useEffect(() => {
-    async function fetchDeckAndCard() {
+    async function fetchDeck() {
       try {
-        const deckData = await readDeck(deckId); 
-        const cardData = deckData.cards.find((card) => card.id === +cardId);
-
+        const deckData = await readDeck(deckId);
         setDeck(deckData);
-        setFormData({
-          front: cardData.front,
-          back: cardData.back
-        });
       } catch (error) {
-        console.error("Error fetching data: ", error);
+        console.error("Error fetching deck data: ", error);
       }
     }
 
-    fetchDeckAndCard();
-  }, [deckId, cardId]);
+    fetchDeck();
+  }, [deckId]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({
       ...formData,
-      [name]: value
+      [name]: value,
     });
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    await createCard({ id: cardId, front, back }); 
 
-    if (deck) {
+    
+    const newCard = { front, back };
+
+    try {
+      const createdCard = await createCard(deckId, newCard);
+
+      
+      if (deck) {
         const updatedDeck = {
           ...deck,
-          cards: [...deck.cards, newCard]
+          cards: [...deck.cards, createdCard],
         };
-        await updateDeck(updatedDeck);}
+        await updateDeck(updatedDeck);
+      }
 
-
-    history.push(`/decks/${deckId}`);
+      history.push(`/decks/${deckId}`);
+    } catch (error) {
+      console.error("Error creating card: ", error);
+    }
   };
-
 
   return (
     <div>

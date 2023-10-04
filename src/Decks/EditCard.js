@@ -44,18 +44,24 @@ function EditCard() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    await updateCard({ id: cardId, front, back }); 
 
-    if (deck) {
-        const updatedDeck = {
-          ...deck,
-          cards: [...deck.cards, newCard]
-        };
-        await updateDeck(updatedDeck);}
+    // Create an updated card object
+    const updatedCard = {
+      id: +cardId, // Ensure the id is a number
+      front,
+      back,
+    };
 
-    history.push(`/decks/${deckId}`);
+    try {
+      await updateCard(updatedCard);
+
+      // You don't need to update the deck with the edited card here
+
+      history.push(`/decks/${deckId}`);
+    } catch (error) {
+      console.error("Error updating card: ", error);
+    }
   };
-
   
 
   return (

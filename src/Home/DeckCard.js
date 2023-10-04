@@ -18,21 +18,21 @@ const handleDelete = async (id) => {
   };
 
   
-return (
- 
-  <div className="card">
-    <h2>{deck.name}</h2>
-    <p>{deck.description}</p>
-    <Link to = {`${url}/study`}>
-      <button> Study </button>
-    </Link>
-    <Link to = {`${url}`}>
-      <button> View </button>
-    </Link>
-      <button className="btn btn-danger" onClick={handleDelete}> Delete</button>
-  </div>
- 
-)
-}
+  return (
+    <div className="card">
+      <h2>{deck.name}</h2>
+      <p>{deck.description}</p>
+      <Link to={`{/decks/:deckId/study}`}>
+        <button>Study</button>
+      </Link>
+      <Link to={"/decks/:deckId"}>
+        <button>View</button>
+      </Link>
+      <button className="btn btn-danger" onClick={() => handleDelete(deck.id)}>
+        Delete
+      </button>
+    </div>
+  );
+};
 
 export default DeckCard

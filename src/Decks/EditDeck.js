@@ -20,7 +20,7 @@ const {name, description} = formData;
 useEffect(() => {
     async function fetchDeck() {
       try {
-        const deckData = await readDeck(deckId); // Use readDeck to fetch deck data
+        const deckData = await readDeck(deckId); 
         setDeck(deckData);
         setFormData({
           name: deckData.name,
@@ -95,5 +95,5 @@ return (
     </div>
   );
 }
-export default EditCard
+export default EditDeck
   

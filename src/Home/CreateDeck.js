@@ -1,8 +1,11 @@
 import React, {useState} from "react";
-import {Link, Router, Route} from "react-router-dom";
+import {Link, Router, Route, useHistory} from "react-router-dom";
+import { createDeck } from "../utils/api";
 
 
-function CreateDeck ({newDeck}){
+function CreateDeck ({createDeck}){
+const history = useHistory();
+
 const initialFormState = {
     name: "",
     description: ""
@@ -22,15 +25,15 @@ const handleInputChange = (event) => {
 
 const handleSubmit = (event) => {
     event.preventDefault()
-    newDeck({name,description})
+    createDeck(formData)
+    .then(() => setFormData({...initialFormState}))
+    .then(() => history.push("/decks/new"));
 
-    setFormData({...initialFormState })
 }
 
 
 return (
     <div>
-        <Route path="/decks/new" component={CreateDeck}>
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">
           Name
@@ -58,7 +61,6 @@ return (
         </Link>
         <button type="submit">Submit</button>
       </form>
-      </Route>
     </div>
   );
 }
