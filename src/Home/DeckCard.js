@@ -12,7 +12,7 @@ const {url} = useRouteMatch()
 const handleDelete = async (id) => {
     const result = window.confirm("Are you sure you want to delete this deck?");
     if (result) {
-      await deleteDeck(id);
+      await deleteDeck(deck.id);
       history.push('/')
     }
   };
