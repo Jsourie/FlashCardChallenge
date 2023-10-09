@@ -1,26 +1,24 @@
-import React from "react"
-import { Link } from "react-router-dom"
-import { updateDeck,readDeck } from "../utils/api"
-import { useParams } from "react-router-dom/cjs/react-router-dom.min"
+import React, { useState, useEffect } from "react";
+import { Link, useParams, useHistory } from "react-router-dom";
+import { updateDeck, readDeck } from "../utils/api"; // Make sure you have the correct import paths
 
-
-
-function EditDeck(){
-
-  const {deckId} =useParams()
+function EditDeck() {
+  const { deckId } = useParams();
+  const history = useHistory();
   const initialFormState = {
     name: "",
     description: ""
-}
+  };
 
-const [formData, setFormData] = useState ({...initialFormState})
+  const [formData, setFormData] = useState({ ...initialFormState });
+  const [deck, setDeck] = useState(null);
 
-const {name, description} = formData;
+  const { name, description } = formData;
 
-useEffect(() => {
+  useEffect(() => {
     async function fetchDeck() {
       try {
-        const deckData = await readDeck(deckId); 
+        const deckData = await readDeck(deckId);
         setDeck(deckData);
         setFormData({
           name: deckData.name,
@@ -34,22 +32,22 @@ useEffect(() => {
     fetchDeck();
   }, [deckId]);
 
-const handleInputChange = (event) => {
-    const {name,value} = event.target;
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
     setFormData({
-        ...formData,
-        [name]: value,
-    })
-}
+      ...formData,
+      [name]: value
+    });
+  };
 
-const handleSubmit = (event) => {
-    event.preventDefault()
-    updateDeck({ id: deck.id, name, description })
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    await updateDeck({ id: deck.id, name, description });
 
-    setFormData({...initialFormState })
-}
+    history.push(`/decks/${deckId}`);
+  };
 
-return (
+  return (
     <div>
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb">
@@ -57,7 +55,7 @@ return (
             <Link to="/">Home</Link>
           </li>
           <li className="breadcrumb-item">
-            <Link to={`/decks/${deckId}`}>{deck.name}</Link>
+            <Link to={`/decks/${deckId}`}>{deck ? deck.name : ""}</Link>
           </li>
           <li className="breadcrumb-item active" aria-current="page">
             Edit Deck
@@ -87,7 +85,7 @@ return (
           rows={3}
           placeholder="Description"
         />
-        <Link to="/">
+        <Link to={`/decks/${deckId}`}>
           <button>Cancel</button>
         </Link>
         <button type="submit">Submit</button>
@@ -95,5 +93,7 @@ return (
     </div>
   );
 }
-export default EditDeck
+
+export default EditDeck;
+
   

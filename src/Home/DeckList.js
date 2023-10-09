@@ -30,7 +30,7 @@ function DeckList () {
     return (
       <main className="card">
          <Link to ={'/decks/new'}><button type="button" className="btn btn-secondary btn sm m-1">+ Create New</button></Link>
-        <section className="row">{list}</section>
+        <section className="col">{list}</section>
        
       </main>
     );

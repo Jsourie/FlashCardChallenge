@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { readDeck } from "../utils/api";
+import { readDeck, deleteDeck } from "../utils/api";
 import CardList from "./CardList";
 import { Link, useParams, useHistory, Switch, Route } from "react-router-dom";
 import Study from "../Home/Study";
 import AddCard from "./AddCard";
 import EditCard from "./EditCard";
+import { useRouteMatch } from "react-router-dom";
 
 function Deck() {
   const { deckId } = useParams();
   const history = useHistory();
+  const { url } = useRouteMatch();
 
   const [deck, setDeck] = useState(null);
   const [cards, setCards] = useState([]);
@@ -27,17 +29,21 @@ function Deck() {
     fetchDeck();
   }, [deckId]);
 
-  const handleDeleteDeck = () => {
+  const handleDeleteDeck = async () => {
     const confirmed = window.confirm("Are you sure you want to delete this deck?");
     if (confirmed) {
-      
-      history.push("/");
+      try {
+        await deleteDeck(deckId); 
+        console.log("Deck deleted");
+        history.push("/"); 
+      } catch (error) {
+        console.error("Error deleting deck: ", error);
+      }
     }
   };
 
   return (
     <main className="card">
-      
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb">
           <li className="breadcrumb-item">
@@ -49,36 +55,28 @@ function Deck() {
         </ol>
       </nav>
 
-     
       <h2>{deck && deck.name}</h2>
       <p>{deck && deck.description}</p>
 
-      
-      <Link to={`${deckId}/edit`}>
-        <button>Edit</button>
-      </Link>
-      <Link to={`${deckId}/study`}>
-        <button>Study</button>
-      </Link>
-      <Link to={`${deckId}/cards/new`}>
-        <button>Add Cards</button>
-      </Link>
+      <Link className="btn" to={`${url}/edit`}>Edit</Link>
+      <Link className="btn" to={`${url}/study`}>Study</Link>
+      <Link className="btn" to={`${url}/cards/new`}>+ Add Cards</Link>
+
       <button onClick={handleDeleteDeck}>Delete</button>
 
-      
       <h3>Cards</h3>
       {cards.map((card) => (
         <CardList key={card.id} card={card} />
       ))}
 
       <Switch>
-        <Route path={`${deckId}/study`}>
+        <Route path={`${url}/study`}>
           <Study />
         </Route>
-        <Route path={`${deckId}/cards/new`}>
+        <Route path={`${url}/cards/new`}>
           <AddCard />
         </Route>
-        <Route path={`${deckId}/cards/:cardId/edit`}>
+        <Route path={`${url}/edit`}>
           <EditCard />
         </Route>
       </Switch>
@@ -87,3 +85,4 @@ function Deck() {
 }
 
 export default Deck;
+

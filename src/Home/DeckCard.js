@@ -22,15 +22,17 @@ const handleDelete = async (id) => {
     <div className="card">
       <h2>{deck.name}</h2>
       <p>{deck.description}</p>
+      <div>
       <Link to={`{/decks/:deckId/study}`}>
-        <button>Study</button>
+        <button className="btn btn-primary">Study</button>
       </Link>
       <Link to={"/decks/:deckId"}>
-        <button>View</button>
+        <button className="btn btn-secondary">View</button>
       </Link>
       <button className="btn btn-danger" onClick={() => handleDelete(deck.id)}>
         Delete
       </button>
+      </div>
     </div>
   );
 };

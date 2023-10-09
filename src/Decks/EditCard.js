@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams, useHistory } from "react-router-dom";
-import { updateCard, readDeck } from "../utils/api"; 
+import { readDeck, readCard, updateCard } from "../utils/api"; // Make sure you have the correct import paths
 
 function EditCard() {
-  const { deckId, cardId } = useParams(); 
+  const { deckId, cardId } = useParams();
   const history = useHistory();
   const initialFormState = {
     front: "",
@@ -12,16 +12,19 @@ function EditCard() {
 
   const [formData, setFormData] = useState(initialFormState);
   const [deck, setDeck] = useState(null);
+  const [card, setCard] = useState(null);
 
   const { front, back } = formData;
 
   useEffect(() => {
-    async function fetchDeckAndCard() {
+    async function fetchData() {
       try {
-        const deckData = await readDeck(deckId); 
-        const cardData = deckData.cards.find((card) => card.id === +cardId);
+        const deckData = await readDeck(deckId);
+        const cardData = await readCard(cardId);
 
         setDeck(deckData);
+        setCard(cardData);
+
         setFormData({
           front: cardData.front,
           back: cardData.back
@@ -31,7 +34,7 @@ function EditCard() {
       }
     }
 
-    fetchDeckAndCard();
+    fetchData();
   }, [deckId, cardId]);
 
   const handleInputChange = (event) => {
@@ -45,24 +48,20 @@ function EditCard() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Create an updated card object
     const updatedCard = {
-      id: +cardId, // Ensure the id is a number
+      id: card.id, // Use the card object for the ID
       front,
-      back,
+      back
     };
 
     try {
       await updateCard(updatedCard);
-
-      // You don't need to update the deck with the edited card here
 
       history.push(`/decks/${deckId}`);
     } catch (error) {
       console.error("Error updating card: ", error);
     }
   };
-  
 
   return (
     <div>
@@ -72,10 +71,10 @@ function EditCard() {
             <Link to="/">Home</Link>
           </li>
           <li className="breadcrumb-item">
-            <Link to={`/decks/${deckId}`}>{deck.name}</Link>
+            <Link to={`/decks/${deckId}`}>{deck ? deck.name : ""}</Link>
           </li>
           <li className="breadcrumb-item active" aria-current="page">
-            Edit Card
+            Edit Card {cardId}
           </li>
         </ol>
       </nav>
@@ -103,7 +102,7 @@ function EditCard() {
         <Link to={`/decks/${deckId}`}>
           <button>Cancel</button>
         </Link>
-        <button type="submit">Submit</button>
+        <button type="submit">Save</button>
       </form>
     </div>
   );
