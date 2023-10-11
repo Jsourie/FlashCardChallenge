@@ -14,14 +14,14 @@ function StudyCard({ deckId, cards }) {
   const handleFlip = () => {
     setFront(!isFront);
   };
-
+  
   const handleClick = () => {
     if (index < cards.length - 1) {
       setIndex(index + 1);
     } else {
       restartPrompt();
     }
-    setFront(true); 
+    setFront(true);
   };
 
   const restartPrompt = () => {
@@ -31,8 +31,10 @@ function StudyCard({ deckId, cards }) {
     } else {
       history.push("/");
     }
-    setFront(true); // Ensure front side is shown for the restarted deck
+    setFront(true); 
   };
+
+  const cardCountText = `Card ${index + 1} of ${cards.length}`
 
   return (
     <div>
@@ -48,30 +50,17 @@ function StudyCard({ deckId, cards }) {
             Study
           </li>
         </ol>
-      </nav>
-
-      {cards.length < 3 ? (
+      </nav>   
         <div>
-          <h2>Not enough cards</h2>
-          <p>
-            There are not enough cards in this deck to study. You can add cards
-            to the deck to start studying.
-          </p>
-          <Link to={`/decks/${deckId}/cards/new`}>
-            <button>Add Cards</button>
-          </Link>
-        </div>
-      ) : (
-        <div>
+          <p>{cardCountText}</p>
           <div>{isFront ? cards[index].front : cards[index].back}</div>
-          <button onClick={handleFlip}>Flip</button>
+          <button onClick={handleFlip}>flip</button>
           {!isFront && (
             <button onClick={handleClick}>
-              {index < cards.length - 1 ? "Next" : "Restart"}
+              {index < cards.length - 1 ? "next" : "restart"}
             </button>
           )}
         </div>
-      )}
     </div>
   );
 }

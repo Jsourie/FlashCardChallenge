@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams, useHistory } from "react-router-dom";
-import { updateDeck, readDeck } from "../utils/api"; // Make sure you have the correct import paths
+import { updateDeck, readDeck } from "../utils/api"; 
 
 function EditDeck() {
   const { deckId } = useParams();
@@ -64,36 +64,39 @@ function EditDeck() {
       </nav>
       <h1>Edit Deck</h1>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="name">
-          Name
+        <div className="form-group">
+          <label htmlFor="name">Name</label>
           <input
             id="name"
             type="text"
             name="name"
+            className="form-control"
             onChange={handleInputChange}
             value={name}
           />
-        </label>
-        <br />
-        <label htmlFor="description">Description</label>
-        <textarea
-          id="description"
-          name="description"
-          required={true}
-          value={description}
-          onChange={handleInputChange}
-          rows={3}
-          placeholder="Description"
-        />
+        </div>
+        <div className="form-group">
+          <label htmlFor="description">Description</label>
+          <textarea
+            id="description"
+            name="description"
+            className="form-control"
+            required={true}
+            value={description}
+            onChange={handleInputChange}
+            rows={3}
+            placeholder="Description"
+          />
+        </div>
         <Link to={`/decks/${deckId}`}>
-          <button>Cancel</button>
+          <button className="btn btn-secondary">Cancel</button>
         </Link>
-        <button type="submit">Submit</button>
+        <button type="submit" className="btn btn-primary">
+          Submit
+        </button>
       </form>
     </div>
   );
 }
 
 export default EditDeck;
-
-  

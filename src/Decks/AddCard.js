@@ -39,13 +39,11 @@ function AddCard() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    
     const newCard = { front, back };
 
     try {
       const createdCard = await createCard(deckId, newCard);
 
-      
       if (deck) {
         const updatedDeck = {
           ...deck,
@@ -68,7 +66,7 @@ function AddCard() {
             <Link to="/">Home</Link>
           </li>
           <li className="breadcrumb-item">
-            <Link to={`/decks/${deckId}`}>{deck.name}</Link>
+            <Link to={`/decks/${deckId}`}>{deck && deck.name}</Link>
           </li>
           <li className="breadcrumb-item active" aria-current="page">
             Add Card

@@ -2,10 +2,15 @@ import React from "react";
 import Header from "./Header";
 import NotFound from "./NotFound";
 import DeckList from "../Home/DeckList";
-import {Link} from "react-router-dom";
-import { Route, Switch } from "react-router-dom/cjs/react-router-dom.min";
+import { Link } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import CreateDeck from "../Home/CreateDeck";
-import Deck from "../Decks/Deck"
+import Deck from "../Decks/Deck";
+import Study from "../Home/Study";
+import EditDeck from "../Decks/EditDeck";
+import EditCard from "../Decks/EditCard";
+import AddCard from "../Decks/AddCard";
+
 
 function Layout() {
   return (
@@ -13,18 +18,30 @@ function Layout() {
       <Header />
       <div className="container">
         <Switch>
-          <Route path = {"/decks/new"}>
-        <CreateDeck />
+          <Route exact path="/decks/new">
+            <CreateDeck />
+          </Route>
+          <Route exact path="/">
+            <DeckList />
+          </Route>
+          <Route exact path="/decks/:deckId">
+            <Deck />
+          </Route>
+          <Route exact path="/decks/:deckId/study">
+            <Study />
+          </Route>
+          <Route exact path="/decks/:deckId/cards/new">
+          <AddCard />
         </Route>
-        <Route path = {"/"}>
-        <DeckList />
+        <Route exact path="/decks/:deckId/cards/:cardId/edit">
+          <EditCard />
         </Route>
-        <Route path = {"/decks/:deckId"}>
-          <Deck />
+        <Route exact path ="/decks/:deckId/edit">
+          <EditDeck />
         </Route>
-        <Route>
-        <NotFound />
-        </Route>
+          <Route>
+            <NotFound />
+          </Route>
         </Switch>
       </div>
     </>

@@ -27,12 +27,17 @@ function DeckList () {
   
     const list = decks.map((deck) => <DeckCard key={deck.id} deck={deck} />);
   
-    return (
-      <main className="card">
-         <Link to ={'/decks/new'}><button type="button" className="btn btn-secondary btn sm m-1">+ Create New</button></Link>
+     return (
+    <main className="container">
+      <div className="card">
+        <Link to={'/decks/new'}>
+          <button type="button" className="btn btn-secondary btn-sm m-1">
+            + Create New
+          </button>
+        </Link>
         <section className="col">{list}</section>
-       
-      </main>
-    );
-  };
+      </div>
+    </main>
+  );
+};
   export default DeckList;

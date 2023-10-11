@@ -33,14 +33,15 @@ function Deck() {
     const confirmed = window.confirm("Are you sure you want to delete this deck?");
     if (confirmed) {
       try {
-        await deleteDeck(deckId); 
+        await deleteDeck(deckId);
         console.log("Deck deleted");
-        history.push("/"); 
+        history.push("/");
       } catch (error) {
         console.error("Error deleting deck: ", error);
       }
     }
   };
+
 
   return (
     <main className="card">
@@ -57,29 +58,17 @@ function Deck() {
 
       <h2>{deck && deck.name}</h2>
       <p>{deck && deck.description}</p>
-
-      <Link className="btn" to={`${url}/edit`}>Edit</Link>
-      <Link className="btn" to={`${url}/study`}>Study</Link>
-      <Link className="btn" to={`${url}/cards/new`}>+ Add Cards</Link>
-
-      <button onClick={handleDeleteDeck}>Delete</button>
+      <div className="col">
+      <Link className="btn btn-primary" to={`${url}/edit`}>Edit</Link>
+      <Link className="btn btn-secondary" to={`${url}/study`}>Study</Link>
+      <Link className="btn btn-light" to={`${url}/cards/new`}>+ Add Cards</Link>
+      </div>
+      <button className="btn btn-danger" onClick={handleDeleteDeck}>Delete</button>
 
       <h3>Cards</h3>
       {cards.map((card) => (
         <CardList key={card.id} card={card} />
       ))}
-
-      <Switch>
-        <Route path={`${url}/study`}>
-          <Study />
-        </Route>
-        <Route path={`${url}/cards/new`}>
-          <AddCard />
-        </Route>
-        <Route path={`${url}/edit`}>
-          <EditCard />
-        </Route>
-      </Switch>
     </main>
   );
 }

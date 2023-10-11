@@ -80,29 +80,34 @@ function EditCard() {
       </nav>
       <h1>Edit Card</h1>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="front">Front</label>
-        <textarea
-          id="front"
-          name="front"
-          required={true}
-          value={front}
-          onChange={handleInputChange}
-          rows={3}
-        />
-        <br />
-        <label htmlFor="back">Back</label>
-        <textarea
-          id="back"
-          name="back"
-          required={true}
-          value={back}
-          onChange={handleInputChange}
-          rows={3}
-        />
+        <div className="form-group">
+          <label htmlFor="front">Front</label>
+          <textarea
+            id="front"
+            name="front"
+            className="form-control"
+            required={true}
+            value={front}
+            onChange={handleInputChange}
+            rows={3}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="back">Back</label>
+          <textarea
+            id="back"
+            name="back"
+            className="form-control"
+            required={true}
+            value={back}
+            onChange={handleInputChange}
+            rows={3}
+          />
+        </div>
         <Link to={`/decks/${deckId}`}>
-          <button>Cancel</button>
+          <button className="btn btn-secondary">Cancel</button>
         </Link>
-        <button type="submit">Save</button>
+        <button type="submit" className="btn btn-primary">Save</button>
       </form>
     </div>
   );
