@@ -26,7 +26,7 @@ function CreateDeck() {
     event.preventDefault();
     createDeck(formData)
       .then(() => setFormData({ ...initialFormState }))
-      .then(() => history.push("/decks/new"));
+      .then(() => history.push("/"));
   };
 
   return (

@@ -1,9 +1,19 @@
 {
   "decks": [
     {
-      "id": 3,
-      "name": "New DECKKKKK",
-      "description": "Justine "
+      "id": 4,
+      "name": "Justine",
+      "description": "Sourie"
+    },
+    {
+      "id": 5,
+      "name": "Hello I  am creating a new deck",
+      "description": "This is a new deck-WE WANT TO EDIT "
+    },
+    {
+      "name": "Bob",
+      "description": "Delete Deck",
+      "id": 6
     }
   ],
   "cards": [
@@ -96,6 +106,109 @@
       "back": "jkbjkb",
       "deckId": 3,
       "id": 18
+    },
+    {
+      "front": "THIS IS A NEW CAR",
+      "back": "HELLO-Update",
+      "deckId": 4,
+      "id": 20
+    },
+    {
+      "front": "WE want to add this new card",
+      "back": "THIS IS NEW 10/19-PLEASE UPDATE THE CARD",
+      "deckId": 5,
+      "id": 22
+    },
+    {
+      "id": 24,
+      "front": "This is 1st card",
+      "back": "number 1 "
+    },
+    {
+      "id": 25,
+      "front": "This is the new car",
+      "back": "anfcldsnf"
+    },
+    {
+      "id": 26,
+      "front": "NEw CARD",
+      "back": "CAR NO 2"
+    },
+    {
+      "id": 27,
+      "front": "Another ",
+      "back": "new card hhhhhhhh"
+    },
+    {
+      "front": "feksfnsn",
+      "back": "vndsnvlsd",
+      "deckId": 6,
+      "id": 28
+    },
+    {
+      "id": 29,
+      "deckId": "6",
+      "front": "fvgagvfrgmf;bm",
+      "back": "did this work?"
+    },
+    {
+      "id": 30,
+      "front": "Hi please do not delete",
+      "back": "do not delete from deck\n\nplease please please "
+    },
+    {
+      "front": "grdesgr",
+      "back": "grdesgr-DO NOT DELETE ID ",
+      "deckId": "6",
+      "id": 32
+    },
+    {
+      "front": "fdrsvgs",
+      "back": "svgfdgvdf--DO NOT DELETE ID ",
+      "deckId": 6,
+      "id": 33
+    },
+    {
+      "front": "fewferw",
+      "back": "gregre-HOLA\n",
+      "deckId": 4,
+      "id": 35
+    },
+    {
+      "front": "NEw ",
+      "back": "CARD ",
+      "deckId": 5,
+      "id": 36
+    },
+    {
+      "front": "one more card ",
+      "back": "this is another card",
+      "deckId": 6,
+      "id": 37
+    },
+    {
+      "front": "fewgr",
+      "back": "rgregre",
+      "deckId": 6,
+      "id": 38
+    },
+    {
+      "front": "nfdknfvosgvreage",
+      "back": "gregvrgvre",
+      "deckId": 4,
+      "id": 39
+    },
+    {
+      "front": "gregre",
+      "back": "gregreg",
+      "deckId": 4,
+      "id": 40
+    },
+    {
+      "front": "fdsf",
+      "back": "vgfrdvgd",
+      "deckId": 4,
+      "id": 41
     }
   ]
 }

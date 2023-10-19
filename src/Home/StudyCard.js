@@ -14,14 +14,14 @@ function StudyCard({ deckId, cards }) {
   const handleFlip = () => {
     setFront(!isFront);
   };
-  
+
   const handleClick = () => {
     if (index < cards.length - 1) {
       setIndex(index + 1);
     } else {
       restartPrompt();
     }
-    setFront(true);
+    setFront(true); 
   };
 
   const restartPrompt = () => {
@@ -31,36 +31,27 @@ function StudyCard({ deckId, cards }) {
     } else {
       history.push("/");
     }
-    setFront(true); 
+    setFront(true); // Ensure front side is shown for the restarted deck
   };
-
-  const cardCountText = `Card ${index + 1} of ${cards.length}`
 
   return (
     <div>
-      <nav aria-label="breadcrumb">
-        <ol className="breadcrumb">
-          <li className="breadcrumb-item">
-            <Link to="/">Home</Link>
-          </li>
-          <li className="breadcrumb-item">
-            <Link to={`/decks/${deckId}`}>Deck</Link>
-          </li>
-          <li className="breadcrumb-item active" aria-current="page">
-            Study
-          </li>
-        </ol>
-      </nav>   
-        <div>
-          <p>{cardCountText}</p>
-          <div>{isFront ? cards[index].front : cards[index].back}</div>
-          <button onClick={handleFlip}>flip</button>
+      <div className="card mx-auto">
+        <div className="card-body">
+          {isFront ? cards[index].front : cards[index].back}
+        </div>
+        <div className="card-footer">
+          <button className="btn btn-primary" onClick={handleFlip}>Flip</button>
           {!isFront && (
-            <button onClick={handleClick}>
-              {index < cards.length - 1 ? "next" : "restart"}
+            <button
+              className="btn btn-success"
+              onClick={handleClick}
+            >
+              {index < cards.length - 1 ? "Next" : "Restart"}
             </button>
           )}
         </div>
+      </div>
     </div>
   );
 }

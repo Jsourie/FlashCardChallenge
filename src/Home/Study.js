@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams, useRouteMatch } from "react-router-dom";
-import { readDeck, readCard } from "../utils/api";
+import { readDeck } from "../utils/api";
 import StudyCard from "./StudyCard";
 import { Switch, Route } from "react-router-dom";
 
@@ -12,18 +12,17 @@ function Study() {
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
-    async function fetchData() {
+    async function fetchDeck() {
       try {
         const deckData = await readDeck(deckId);
-        const cardData = await readCard(deckId);
         setDeck(deckData);
-        setCards(cardData);
+        setCards(deckData.cards);
       } catch (error) {
         console.error("Error fetching data: ", error);
       }
     }
-  
-    fetchData();
+
+    fetchDeck();
   }, [deckId]);
 
   return (
@@ -50,14 +49,16 @@ function Study() {
             to the deck to start studying.
           </p>
           <Link to={`/decks/${deckId}/cards/new`}>
-            <button className="btn btn-primary">Add Cards</button>
+            <button>Add Cards</button>
           </Link>
         </div>
-      ) : (       
-            <div>
-            <h1>Study: {deck && cards.id}</h1>
+      ) : (
+        <Switch>
+          <Route path={`${url}/`}>
+            <h1>Study: {deck && deck.name}</h1>
             <StudyCard deckId={deckId} cards={cards} />
-            </div>
+          </Route>
+        </Switch>
       )}
     </div>
   );

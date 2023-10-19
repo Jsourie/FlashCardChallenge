@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams, useHistory } from "react-router-dom";
-import { readDeck, readCard, updateCard } from "../utils/api"; // Make sure you have the correct import paths
+import { readDeck, readCard, updateCard, updateDeck } from "../utils/api";
 
 function EditCard() {
   const { deckId, cardId } = useParams();
@@ -12,19 +12,17 @@ function EditCard() {
 
   const [formData, setFormData] = useState(initialFormState);
   const [deck, setDeck] = useState(null);
-  const [card, setCard] = useState(null);
+  const [card, setCard] = useState(null); 
 
   const { front, back } = formData;
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const deckData = await readDeck(deckId);
-        const cardData = await readCard(cardId);
+        const [deckData, cardData] = await Promise.all([readDeck(deckId), readCard(cardId)]);
 
         setDeck(deckData);
-        setCard(cardData);
-
+        setCard(cardData); // Set card state
         setFormData({
           front: cardData.front,
           back: cardData.back
@@ -45,22 +43,27 @@ function EditCard() {
     });
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
 
     const updatedCard = {
-      id: card.id, // Use the card object for the ID
       front,
-      back
+      back,
+      deckId: deck.id,
+      id: card.id,
     };
 
-    try {
-      await updateCard(updatedCard);
-
-      history.push(`/decks/${deckId}`);
-    } catch (error) {
-      console.error("Error updating card: ", error);
-    }
+    updateCard(updatedCard)
+      .then(() => {
+        setCard({ ...card, front, back });
+        return updateDeck({ id: deck.id, name: deck.name, description: deck.description });
+      })
+      .then(() => {
+        history.push(`/decks/${deckId}`);
+      })
+      .catch((error) => {
+        console.error("Error updating card or deck: ", error);
+      });
   };
 
   return (
@@ -114,3 +117,4 @@ function EditCard() {
 }
 
 export default EditCard;
+

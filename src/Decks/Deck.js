@@ -33,7 +33,7 @@ function Deck() {
     const confirmed = window.confirm("Are you sure you want to delete this deck?");
     if (confirmed) {
       try {
-        await deleteDeck(deckId);
+        await deleteDeck(deck.id);
         console.log("Deck deleted");
         history.push("/");
       } catch (error) {
@@ -58,20 +58,22 @@ function Deck() {
 
       <h2>{deck && deck.name}</h2>
       <p>{deck && deck.description}</p>
-      <div className="col">
+      <div className="col mb-4">
       <Link className="btn btn-primary" to={`${url}/edit`}>Edit</Link>
       <Link className="btn btn-secondary" to={`${url}/study`}>Study</Link>
       <Link className="btn btn-light" to={`${url}/cards/new`}>+ Add Cards</Link>
-      </div>
+      
       <button className="btn btn-danger" onClick={handleDeleteDeck}>Delete</button>
-
-      <h3>Cards</h3>
+      </div>
+      <div className="col-lg-6">
+      <h3>Cards {cards.length}</h3>
+      <br />
       {cards.map((card) => (
         <CardList key={card.id} card={card} />
       ))}
+      </div>
     </main>
   );
 }
 
 export default Deck;
-

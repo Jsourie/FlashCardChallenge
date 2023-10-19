@@ -6,15 +6,16 @@ export const DeckCard = ({ deck }) => {
   const history = useHistory();
   const { url } = useRouteMatch();
 
-  const handleDelete = async (id) => {
+  const handleDelete = () => {
     const result = window.confirm("Are you sure you want to delete this deck?");
     if (result) {
-      try {
-        await deleteDeck(id);
-        history.push('/');
-      } catch (error) {
-        console.error("Error deleting deck:", error);
-      }
+      deleteDeck(deck.id)
+        .then(() => {
+          history.push('/');
+        })
+        .catch(error => {
+          console.error("Error deleting deck:", error);
+        });
     }
   };
 
