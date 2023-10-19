@@ -109,7 +109,7 @@
     },
     {
       "front": "THIS IS A NEW CAR",
-      "back": "HELLO-Update",
+      "back": "HELLO-Update-number 2",
       "deckId": 4,
       "id": 20
     },
@@ -175,8 +175,8 @@
       "id": 35
     },
     {
-      "front": "NEw ",
-      "back": "CARD ",
+      "front": "NEw -STILL WORKING",
+      "back": "CARD fcdsfdfasfefr",
       "deckId": 5,
       "id": 36
     },
@@ -209,6 +209,12 @@
       "back": "vgfrdvgd",
       "deckId": 4,
       "id": 41
+    },
+    {
+      "front": "fefrg",
+      "back": "AFTER COMPONENT CHANGE",
+      "deckId": 5,
+      "id": 42
     }
   ]
 }

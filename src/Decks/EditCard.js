@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams, useHistory } from "react-router-dom";
 import { readDeck, readCard, updateCard, updateDeck } from "../utils/api";
+import CardForm from "./CardForm";
 
 function EditCard() {
   const { deckId, cardId } = useParams();
@@ -69,49 +70,16 @@ function EditCard() {
   return (
     <div>
       <nav aria-label="breadcrumb">
-        <ol className="breadcrumb">
-          <li className="breadcrumb-item">
-            <Link to="/">Home</Link>
-          </li>
-          <li className="breadcrumb-item">
-            <Link to={`/decks/${deckId}`}>{deck ? deck.name : ""}</Link>
-          </li>
-          <li className="breadcrumb-item active" aria-current="page">
-            Edit Card {cardId}
-          </li>
-        </ol>
       </nav>
       <h1>Edit Card</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="front">Front</label>
-          <textarea
-            id="front"
-            name="front"
-            className="form-control"
-            required={true}
-            value={front}
-            onChange={handleInputChange}
-            rows={3}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="back">Back</label>
-          <textarea
-            id="back"
-            name="back"
-            className="form-control"
-            required={true}
-            value={back}
-            onChange={handleInputChange}
-            rows={3}
-          />
-        </div>
-        <Link to={`/decks/${deckId}`}>
-          <button className="btn btn-secondary">Cancel</button>
-        </Link>
-        <button type="submit" className="btn btn-primary">Save</button>
-      </form>
+      <CardForm
+        formData={formData}
+        handleInputChange={handleInputChange}
+        handleSubmit={handleSubmit}
+      />
+      <Link to={`/decks/${deckId}`}>
+        <button className="btn btn-secondary">Cancel</button>
+      </Link>
     </div>
   );
 }
