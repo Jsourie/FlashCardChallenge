@@ -36,6 +36,7 @@ function StudyCard({ deckId, cards }) {
 
   return (
     <div>
+       <p>Card {index + 1} of {cards.length}</p>
       <div className="card mx-auto">
         <div className="card-body">
           {isFront ? cards[index].front : cards[index].back}
