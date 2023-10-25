@@ -8,7 +8,7 @@ function Study() {
   const { deckId } = useParams();
   const { url } = useRouteMatch();
 
-  const [deck, setDeck] = useState(null);
+  const [deck, setDeck] = useState([]);
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
@@ -43,10 +43,8 @@ function Study() {
 
       {cards.length < 3 ? (
         <div>
-          <h2>Not enough cards</h2>
           <p>
-            There are not enough cards in this deck to study. You can add cards
-            to the deck to start studying.
+          Not enough cards
           </p>
           <Link to={`/decks/${deckId}/cards/new`}>
             <button>Add Cards</button>

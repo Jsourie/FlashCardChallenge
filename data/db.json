@@ -1,19 +1,14 @@
 {
   "decks": [
     {
-      "id": 4,
-      "name": "Justine",
-      "description": "Sourie"
+      "id": 10,
+      "name": "Hellllooo",
+      "description": "Hi"
     },
     {
-      "id": 5,
-      "name": "Hello I  am creating a new deck",
-      "description": "This is a new deck-WE WANT TO EDIT "
-    },
-    {
-      "name": "Bob",
-      "description": "Delete Deck",
-      "id": 6
+      "name": "jytjyujkyu",
+      "description": "liulkiutjtjjh",
+      "id": 15
     }
   ],
   "cards": [
@@ -140,12 +135,6 @@
       "back": "new card hhhhhhhh"
     },
     {
-      "front": "feksfnsn",
-      "back": "vndsnvlsd",
-      "deckId": 6,
-      "id": 28
-    },
-    {
       "id": 29,
       "deckId": "6",
       "front": "fvgagvfrgmf;bm",
@@ -163,40 +152,10 @@
       "id": 32
     },
     {
-      "front": "fdrsvgs",
-      "back": "svgfdgvdf--DO NOT DELETE ID ",
-      "deckId": 6,
-      "id": 33
-    },
-    {
-      "front": "fewferw",
-      "back": "gregre-HOLA\n",
-      "deckId": 4,
-      "id": 35
-    },
-    {
       "front": "NEw -STILL WORKING",
       "back": "CARD fcdsfdfasfefr",
       "deckId": 5,
       "id": 36
-    },
-    {
-      "front": "one more card ",
-      "back": "this is another card",
-      "deckId": 6,
-      "id": 37
-    },
-    {
-      "front": "fewgr",
-      "back": "rgregre",
-      "deckId": 6,
-      "id": 38
-    },
-    {
-      "front": "nfdknfvosgvreage",
-      "back": "gregvrgvre",
-      "deckId": 4,
-      "id": 39
     },
     {
       "front": "gregre",
@@ -215,6 +174,84 @@
       "back": "AFTER COMPONENT CHANGE",
       "deckId": 5,
       "id": 42
+    },
+    {
+      "front": "fewafrw",
+      "back": "gregerag",
+      "deckId": 6,
+      "id": 46
+    },
+    {
+      "front": "dsd",
+      "back": "fregre",
+      "deckId": 6,
+      "id": 50
+    },
+    {
+      "front": "vfgvrgregv",
+      "back": "gregregreger",
+      "deckId": 6,
+      "id": 51
+    },
+    {
+      "front": "fewragre",
+      "back": "greagre",
+      "deckId": 7,
+      "id": 52
+    },
+    {
+      "front": "gregeag",
+      "back": "grege",
+      "deckId": 7,
+      "id": 53
+    },
+    {
+      "front": "regerg",
+      "back": "hrhythr",
+      "deckId": 8,
+      "id": 55
+    },
+    {
+      "front": "reg",
+      "back": "greararfg",
+      "deckId": 8,
+      "id": 56
+    },
+    {
+      "front": "frgfr",
+      "back": "greage",
+      "deckId": 12,
+      "id": 57
+    },
+    {
+      "front": "greagre",
+      "back": "gregrea",
+      "deckId": 12,
+      "id": 58
+    },
+    {
+      "front": "egrege",
+      "back": "greag",
+      "deckId": 10,
+      "id": 59
+    },
+    {
+      "front": "jkkjh",
+      "back": "kjbkbhytdrhytd",
+      "deckId": 10,
+      "id": 60
+    },
+    {
+      "front": "fewrfgre",
+      "back": "greg",
+      "deckId": 10,
+      "id": 63
+    },
+    {
+      "front": "htrh",
+      "back": "hytrhj",
+      "deckId": 10,
+      "id": 64
     }
   ]
 }

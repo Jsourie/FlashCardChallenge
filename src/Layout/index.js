@@ -34,8 +34,7 @@ function Layout() {
           <AddCard />
         </Route>
         <Route path="/decks/:deckId/cards/:cardId/edit" component={EditCard} />
-
-        <Route exact path ="/decks/:deckId/edit">
+         <Route exact path ="/decks/:deckId/edit">
           <EditDeck />
         </Route>
           <Route>
