@@ -37,7 +37,7 @@ function AddCard() {
     });
   };
 
-  const handleSubmit = async (event) => {
+  const handleSaveAndRestart = async (event) => {
     event.preventDefault();
 
     const newCard = { front, back };
@@ -53,10 +53,15 @@ function AddCard() {
         await updateDeck(updatedDeck);
       }
 
-      history.push(`/decks/${deckId}`);
+      // Clear the form and restart the process
+      setFormData(initialFormState);
     } catch (error) {
       console.error("Error creating card: ", error);
     }
+  };
+
+  const handleDone = () => {
+    history.push(`/decks/${deckId}`);
   };
 
   return (
@@ -78,10 +83,10 @@ function AddCard() {
         <h1 className="card-header">Add Card</h1>
         <div className="card-body">
           <CardForm
-            front={front}
-            back={back}
+            formData={formData}
             handleInputChange={handleInputChange}
-            handleSubmit={handleSubmit}
+            handleSaveAndRestart={handleSaveAndRestart}
+            handleDone={handleDone}
           />
         </div>
       </div>
@@ -90,3 +95,4 @@ function AddCard() {
 }
 
 export default AddCard;
+

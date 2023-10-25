@@ -1,8 +1,10 @@
-function CardForm({ formData, handleInputChange, handleSubmit }) {
-  const { front, back } = formData || {}; // Add a default empty object to prevent destructuring errors
+import React from "react";
+
+function CardForm({ formData, handleInputChange, handleSaveAndRestart, handleDone }) {
+  const { front, back } = formData || {};
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSaveAndRestart}>
       <div className="form-group">
         <label htmlFor="front">Front</label>
         <textarea
@@ -10,7 +12,7 @@ function CardForm({ formData, handleInputChange, handleSubmit }) {
           name="front"
           className="form-control"
           required={true}
-          value={front} 
+          value={front}
           onChange={handleInputChange}
           rows={3}
         />
@@ -22,14 +24,21 @@ function CardForm({ formData, handleInputChange, handleSubmit }) {
           name="back"
           className="form-control"
           required={true}
-          value={back} 
+          value={back}
           onChange={handleInputChange}
           rows={3}
         />
       </div>
-      <button type="submit" className="btn btn-primary">Save</button>
+      
+      <div>
+        <button type="submit" className="btn btn-primary">Save</button>
+        
+        <button type="button" className="btn btn-secondary" onClick={handleDone}>
+          Done
+        </button>
+      </div>
     </form>
   );
 }
 
-export default CardForm
+export default CardForm;
