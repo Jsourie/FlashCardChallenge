@@ -230,20 +230,14 @@
       "id": 58
     },
     {
-      "front": "jkkjh",
+      "front": "jkkjhfewfefew",
       "back": "kjbkbhytdrhytd",
       "deckId": 10,
       "id": 60
     },
     {
-      "front": "fewrfgre",
-      "back": "greg",
-      "deckId": 10,
-      "id": 63
-    },
-    {
-      "front": "htrh",
-      "back": "hytrhj",
+      "front": "htrhgreger",
+      "back": "hytrhjgreage",
       "deckId": 10,
       "id": 64
     },
@@ -312,6 +306,12 @@
       "back": "ergreger",
       "deckId": 10,
       "id": 75
+    },
+    {
+      "front": "greag",
+      "back": "greag",
+      "deckId": 10,
+      "id": 77
     }
   ]
 }

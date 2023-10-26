@@ -53,7 +53,6 @@ function AddCard() {
         await updateDeck(updatedDeck);
       }
 
-      // Clear the form and restart the process
       setFormData(initialFormState);
     } catch (error) {
       console.error("Error creating card: ", error);
@@ -88,6 +87,14 @@ function AddCard() {
             handleSaveAndRestart={handleSaveAndRestart}
             handleDone={handleDone}
           />
+           <button type="button" className="btn btn-secondary" onClick={handleDone}>
+          Done
+        </button>
+        <div>
+        <button type="submit" className="btn btn-primary" onClick={handleSaveAndRestart}>Save</button>
+        
+    
+      </div>
         </div>
       </div>
     </div>

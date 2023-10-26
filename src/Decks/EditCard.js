@@ -80,6 +80,9 @@ function EditCard() {
       <Link to={`/decks/${deckId}`}>
         <button className="btn btn-secondary">Cancel</button>
       </Link>
+      <Link to={`/decks/${deckId}`}>
+        <button className="btn btn-primary" onClick={handleSubmit}>Save</button>
+      </Link>
     </div>
   );
 }

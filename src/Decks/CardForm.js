@@ -29,14 +29,6 @@ function CardForm({ formData, handleInputChange, handleSaveAndRestart, handleDon
           rows={3}
         />
       </div>
-      
-      <div>
-        <button type="submit" className="btn btn-primary">Save</button>
-        
-        <button type="button" className="btn btn-secondary" onClick={handleDone}>
-          Done
-        </button>
-      </div>
     </form>
   );
 }
